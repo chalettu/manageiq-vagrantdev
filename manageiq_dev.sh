@@ -37,5 +37,5 @@ bundle exec rake evm:db:reset
 bundle exec rake db:seed
 
 # Start the service
-echo "starting the service. You can access it as 127.0.0.1:300 admin/smartvm"
+echo "starting the service. You can access it as 127.0.0.1:3000 admin/smartvm"
 bundle exec rake evm:start
