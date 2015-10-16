@@ -102,6 +102,8 @@ You can synchronize your development environment using this command:
 ```
 $ vagrant rsync  
 ```
+_NOTE:_ rsync will copy from the host to the VM, so you need to copy again config files to make it work properly
+
 If you use VirtualBox, it should be done automatically (but you need to install VBoxTools in the VM, you can also automate the synchronization, although it is not recommended in the documetation as it can give errors if you stop the VM outside of Vagrant
 
 
