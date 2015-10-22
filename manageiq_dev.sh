@@ -1,11 +1,23 @@
 # Configure PostgresSQL
-echo "smartvm" |sudo passwd --stdin postgres 
-sudo su postgres -c 'initdb -D /var/lib/pgsql/data'
-sudo systemctl enable postgresql
-sudo systemctl start postgresql
-sudo su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+echo "smartvm" |sudo passwd --stdin postgres
+# Enabling SCL and postgresql94 in it
+# Configuring postgres in it
+sudo scl enable rh-postgresql94 bash
+#sudo scl enable rh-postgresql94 "/opt/rh/rh-postgresql94/root/usr/bin/postgresql-setup --initdb  /var/lib/pgsql/data"
+sudo /opt/rh/rh-postgresql94/root/usr/bin/postgresql-setup --initdb  /var/lib/pgsql/data
 
-#install rubyversion
+#sudo systemctl enable postgresql
+sudo systemctl enable rh-postgresql94-postgresql.service
+
+#sudo systemctl start postgresql
+sudo systemctl start rh-postgresql94-postgresql.service
+
+#sudo su postgres -c "psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+sudo su postgres -c "/opt/rh/rh-postgresql94/root/bin/psql -c \"CREATE ROLE root SUPERUSER LOGIN PASSWORD 'smartvm'\""
+
+
+# install rbenv to manage ruby versions to be used
+
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
@@ -17,8 +29,7 @@ source ~/.bash_profile
 cd manageiq
 echo "continuing in manageiq/"
 
-#Configure rbenv
-
+#Configure rbenv with the preferred ruby version:
 rbenv install 2.2.3
 rbenv local 2.2.3
 gem install bundler
