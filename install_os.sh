@@ -1,5 +1,8 @@
+#!/usr/bin/env bash
+
 #install new repos and some utils
-yum -y install epel-release bash-completion chrony deltarpm vim wget
+yum -y install bash-completion chrony deltarpm vim wget
+yum -y install epel-release
 
 #install software collections
 pushd /etc/yum.repos.d/
@@ -9,10 +12,11 @@ rpm -Uvh https://www.softwarecollections.org/repos/rhscl/rh-postgresql94/epel-7-
 
 
 # install packages
-yum -y install git-all memchached                           # Git and components, Memcached for the session store
+yum -y install git-all memcached                           # Git and components, Memcached for the session store
 
 #yum -y install postgresql-devel postgresql-server # PostgreSQL Database server and to build 'pg' Gem
-yum -y install openslp-devel rh-postgresql94-postgresql rh-postgresql94-postgresql-devel rh-postgresql94-postgresql-server scl-utils scl-utils-build
+yum -y install openslp-devel rh-postgresql94 rh-postgresql94-postgresql-devel rh-postgresql94-postgresql-server scl-utils scl-utils-build
+#yum -y install postgresql94 postgresql94-devel postgresql94-server
 yum -y install libxml2-devel libxslt-devel patch gcc-c++ # For Nokogiri Gem, and for event-machine Gem
 
 
