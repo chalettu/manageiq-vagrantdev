@@ -16,10 +16,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname="manageiq-devel"
 
-  config.vm.provider "libvirt" do |libvirt|
-    libvirt.driver="kvm"
-    libvirt.memory=3072
-    libvirt.cpus=2
+  config.vm.provider "virtualbox" do |vbox|
+    vbox.memory=3072
+    vbox.cpus=2
   end 
   
   
